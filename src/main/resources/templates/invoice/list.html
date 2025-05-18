@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Invoices</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Invoices</h1>
+    <div th:if="${message}" class="alert alert-warning" th:text="${message}"></div>
+    <table class="table table-striped" th:if="${invoices != null and !#lists.isEmpty(invoices)}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer Name</th>
+            <th>Issue Date</th>
+            <th>Total Amount</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="invoice : ${invoices}">
+            <td>
+                <a th:href="@{/api/invoices/{id}(id=${invoice.id})}" th:text="${invoice.id}"></a>
+            </td>
+            <td th:text="${invoice.customer.firstName + ' ' + invoice.customer.lastName}"></td>
+            <td th:text="${invoice.issueDate}"></td>
+            <td th:text="${invoice.totalAmount}"></td>
+            <td>
+                <a th:href="@{/api/invoices/edit/{id}(id=${invoice.id})}" class="btn btn-warning btn-sm">Edit</a>
+                <form th:action="@{'/api/invoices/delete/' + ${invoice.id}}" method="post" onsubmit="return confirm('Are you sure you want to delete this invoice?');">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <div class="mb-3">
+        <a href="/" class="btn btn-primary">Home</a>
+        <a class="btn btn-success" th:href="@{/api/invoices/create}">Create Invoice</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Customer List</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h1>Customer List</h1>
+  <div th:if="${message}" class="alert alert-warning" th:text="${message}"></div>
+  <div th:if="${customers != null and !#lists.isEmpty(customers)}">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="customer : ${customers}">
+        <td th:text="${customer.id}"></td>
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.phoneNumber}"></td>
+        <td>
+          <a th:href="@{/api/customers/edit/{id}(id=${customer.id})}" class="btn btn-warning btn-sm">Edit</a>
+          <form th:action="@{/api/customers/delete/{id}(id=${customer.id})}" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-danger btn-sm"
+                    onclick="return confirm('Are you sure you want to delete this customer?')">
+              Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <a href="/" class="btn btn-primary">Home</a>
+  <a href="/api/customers/create" class="btn btn-success">Create Customer</a>
+</div>
+</body>
+</html>
