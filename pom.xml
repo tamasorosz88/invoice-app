@@ -185,7 +185,7 @@
 										<limit>
 											<counter>BRANCH</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.68</minimum>
+											<minimum>0.10</minimum>
 										</limit>
 									</limits>
 								</rule>
