@@ -27,3 +27,6 @@ jobs:
 
       - name: Test
         run: mvn test
+
+      - name: something for test
+        run: echo "Hello world!"
