@@ -3,11 +3,11 @@ name: PR workflow
 on:
   push:
     branches:
-      - master
+      - main
 
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-test:
@@ -23,11 +23,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Build
-        run: mvn build
+        run: mvn compile
 
       - name: Test
         run: mvn test
 
       - name: something for test
         run: echo "Hello world!"
-        
