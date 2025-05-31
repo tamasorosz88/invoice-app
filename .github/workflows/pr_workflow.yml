@@ -22,11 +22,5 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Build
-        run: mvn compile
-
-      - name: Test
-        run: mvn test
-
-      - name: something for test
-        run: echo "Hello world!"
+      - name: Maven verify
+        run: mvn verify
