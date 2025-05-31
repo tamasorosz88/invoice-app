@@ -196,6 +196,7 @@
 				<configuration>
 					<excludes>
 						<exclude>**/controller/**</exclude>
+						<exclude>**/repository/**</exclude>
 						<exclude>**/domain/norm/**</exclude>
 						<exclude>**/InvoiceAppApplication.class</exclude>
 					</excludes>
