@@ -3,7 +3,7 @@ name: PR workflow
 on:
   push:
     branches:
-      - feature
+      - main
 
   pull_request:
     branches:
